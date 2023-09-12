@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./Header.module.css";
 import Link from "next/link";
+import { useState } from "react";
 
 export function Header() {
   return (
@@ -8,28 +9,27 @@ export function Header() {
       <div className={styles.header__container_align}>
         <div className={styles.header__sections_align}>
           <Image
-            src={"/images/logoAmaroBlack.svg"}
+            src={"/images/amaroLogo.svg"}
             alt="Amaro Logo"
-            width={100}
-            height={22}
+            width={139}
+            height={23}
             className={styles.imageAlign}
           />
-          <button>
-            {" "}
+          <Link className={styles.cart} href={"/carrinho-de-compras"}>
             <Image
-              src={"/images/menuHamburguer.svg"}
-              alt="Menu de Filtragem"
-              width={20}
-              height={20}
+              src="/images/cart.svg"
+              alt="carrinho de compras"
+              width={22}
+              height={30}
             />
-          </button>
-          <div className={styles.header__filters_box}>
-            <button type="button">Promoções</button>
-            <button type="button">Todas as roupas</button>
-          </div>
+          </Link>
         </div>
         <div className={styles.boxInputSearch}>
-          <input className={styles.searchInput} type="text" placeholder="123" />
+          <input
+            className={styles.searchInput}
+            type="text"
+            placeholder="O que você está procurando?"
+          />
           <button className={styles.buttonSearch}>
             {" "}
             <Image
@@ -39,24 +39,6 @@ export function Header() {
               height={20}
             />
           </button>
-        </div>
-        <div className={styles.header_top_end_box}>
-          <button>
-            <Image
-              src={"/images/lupaBlack.svg"}
-              alt="Botão pesquisar roupa."
-              width={22}
-              height={22}
-            />
-          </button>
-          <Link href={"/carrinho-de-compras"}>
-            <Image
-              src="/images/cart.svg"
-              alt="carrinho de compras"
-              width={22}
-              height={30}
-            />
-          </Link>
         </div>
       </div>
     </header>
