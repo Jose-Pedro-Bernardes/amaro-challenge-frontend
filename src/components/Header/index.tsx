@@ -15,6 +15,8 @@ export function Header() {
             height={23}
             className={styles.imageAlign}
           />
+        </div>
+        <div className={styles.order_cart}>
           <Link className={styles.cart} href={"/carrinho-de-compras"}>
             <Image
               src="/images/cart.svg"
