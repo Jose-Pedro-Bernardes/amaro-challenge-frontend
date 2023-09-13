@@ -1,0 +1,47 @@
+.filter_container {
+  width: 1400px;
+  max-width: 90%;
+  display: flex;
+  justify-content: center;
+}
+
+.filterBox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.filterBox li {
+  max-width: 100%;
+}
+
+.filter {
+  max-width: 100%;
+  width: 120px;
+  height: 30px;
+  background-color: transparent;
+  color: #4b4b4b;
+  font-size: 12px;
+  border: 1px solid #cccccc;
+  border-radius: 40px;
+}
+
+@media (min-width: 800px) {
+  .filterBox {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    gap: 30px;
+  }
+
+  .filter {
+    width: 150px;
+    font-size: 14px;
+  }
+
+  .filter:hover {
+    border: 1px solid #000000;
+    color: #000000;
+  }
+}
