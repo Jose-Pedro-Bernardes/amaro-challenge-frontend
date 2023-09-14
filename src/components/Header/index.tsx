@@ -1,9 +1,20 @@
 import Image from "next/image";
 import styles from "./Header.module.css";
 import Link from "next/link";
+import { ChangeEvent, MouseEventHandler } from "react";
 import { useState } from "react";
 
-export function Header() {
+interface HeaderProps {
+  handleSearch: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: MouseEventHandler<HTMLButtonElement>;
+  inputValue: string;
+}
+
+export function Header({
+  handleSearch,
+  handleSubmit,
+  inputValue,
+}: HeaderProps) {
   return (
     <header className={styles.headerContainer}>
       <div className={styles.header__container_align}>
@@ -26,13 +37,20 @@ export function Header() {
             />
           </Link>
         </div>
-        <div className={styles.boxInputSearch}>
+        <form className={styles.boxInputSearch}>
           <input
+            value={inputValue}
             className={styles.searchInput}
+            onChange={handleSearch}
+            maxLength={40}
             type="text"
             placeholder="O que você está procurando?"
           />
-          <button className={styles.buttonSearch}>
+          <button
+            type={"button"}
+            onClick={handleSubmit}
+            className={styles.buttonSearch}
+          >
             {" "}
             <Image
               src={"/images/lupa.svg"}
@@ -41,7 +59,7 @@ export function Header() {
               height={20}
             />
           </button>
-        </div>
+        </form>
       </div>
     </header>
   );
