@@ -10,11 +10,7 @@ interface HeaderProps {
   inputValue: string;
 }
 
-export function Header({
-  handleSearch,
-  handleSubmit,
-  inputValue,
-}: HeaderProps) {
+export function Header() {
   return (
     <header className={styles.headerContainer}>
       <div className={styles.header__container_align}>
@@ -35,20 +31,21 @@ export function Header({
               width={22}
               height={30}
             />
+            <p className={styles.cart_count}>1</p>
           </Link>
         </div>
         <form className={styles.boxInputSearch}>
           <input
-            value={inputValue}
+            //value={inputValue}
             className={styles.searchInput}
-            onChange={handleSearch}
+            //onChange={handleSearch}
             maxLength={40}
             type="text"
             placeholder="O que você está procurando?"
           />
           <button
             type={"button"}
-            onClick={handleSubmit}
+            //onClick={handleSubmit}
             className={styles.buttonSearch}
           >
             {" "}
@@ -57,6 +54,7 @@ export function Header({
               alt="Botão para pesquisar uma Roupa"
               width={20}
               height={20}
+              layout="responsive"
             />
           </button>
         </form>
