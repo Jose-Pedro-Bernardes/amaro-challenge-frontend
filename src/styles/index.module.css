@@ -10,13 +10,13 @@
 }
 
 .title {
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 500;
   color: #4b4b4b;
 }
 .section__products {
   max-width: 90%;
-  width: 1400px;
+  width: 1900px;
 }
 
 .products_list {
@@ -30,7 +30,7 @@
 
 @media (min-width: 671px) {
   .title {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
   .products_list {
     grid-template-columns: repeat(3, 1fr);
