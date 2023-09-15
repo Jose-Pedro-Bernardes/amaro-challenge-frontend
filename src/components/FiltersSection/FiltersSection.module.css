@@ -22,7 +22,7 @@
   height: 30px;
   background-color: transparent;
   color: #4b4b4b;
-  font-size: 12px;
+  font-size: 0.75rem;
   border: 1px solid #cccccc;
   border-radius: 40px;
 }
@@ -36,11 +36,14 @@
 
   .filter {
     width: 150px;
-    font-size: 14px;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
   }
 
   .filter:hover {
     border: 1px solid #000000;
     color: #000000;
+    font-weight: 500;
+    scale: 1.05;
   }
 }

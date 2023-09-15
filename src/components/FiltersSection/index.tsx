@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./FiltersSection.module.css";
-export function FiltersSection() {
+export function FiltersSection({}) {
   return (
     <>
       <section className={styles.filter_container}>
