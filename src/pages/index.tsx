@@ -17,10 +17,14 @@ export default function Home() {
   const products_list = products;
   const [cart, setCart] = useState<IProduct[]>([]);
 
-  function clothesList() {
-    setClothes(products_list);
-    setAllClothes(products_list);
-  }
+  useEffect(() => {
+    function clothesList() {
+      setClothes(products_list);
+      setAllClothes(products_list);
+    }
+
+    clothesList();
+  }, [products_list]);
 
   function searchClothes(products_list: IProduct[]) {
     if (searchValue === "") {
@@ -79,30 +83,18 @@ export default function Home() {
   }
   return (
     <>
-      <Header
-        handleSearch={handleSearch}
-        handleSubmit={handleSubmit}
-        inputValue={searchValue}
-      />
+      <Header />
       <main className={styles.main_container}>
         <h1 className={styles.title}>Roupas Femininas</h1>
         <FiltersSection />
         <section className={styles.section__products}>
           <ul className={styles.products_list}>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {clothes.map((product) => (
+              <Card key={product.name} clothes={product} />
+            ))}
           </ul>
         </section>
       </main>
     </>
   );
 }
-
-//{clothes.map((product) => (
-//<Card key={product.name} product={product} />
-//))}
