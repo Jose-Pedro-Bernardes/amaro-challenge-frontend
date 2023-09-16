@@ -1,97 +1,126 @@
 import { Header } from "@/components/Header";
 import { Inter } from "next/font/google";
 import styles from "../styles/index.module.css";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FiltersSection } from "@/components/FiltersSection";
 import { products } from "../data/products.json";
-import { IProduct } from "@/types/products.interface";
+import { IProduct, IProductCart } from "@/types/products.interface";
 import Card from "@/components/Card";
+import { v4 as uuid } from "uuid";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [clothes, setClothes] = useState<IProduct[]>([]);
-  const [allClothes, setAllClothes] = useState<IProduct[]>([]);
-  const [searchValue, setSearch] = useState("");
-  const [searchResult, setSearchResult] = useState("");
-  const products_list = products;
-  const [cart, setCart] = useState<IProduct[]>([]);
+  const [filteredClothes, setFilteredClothes] = useState<IProduct[]>([]);
+  const [search, setSearch] = useState("");
+  const [cartCount, setCartCount] = useState(0);
+  const productsList = products;
 
   useEffect(() => {
-    function clothesList() {
-      setClothes(products_list);
-      setAllClothes(products_list);
-    }
+    setClothes(productsList);
+  }, [productsList]);
 
-    clothesList();
-  }, [products_list]);
+  useEffect(() => {
+    const getCartItems = () => {
+      const storedCart = localStorage.getItem("@Amaro:Cart");
+      const cartArray = storedCart ? JSON.parse(storedCart) : [];
+      return cartArray.length;
+    };
 
-  function searchClothes(products_list: IProduct[]) {
-    if (searchValue === "") {
-      setClothes(allClothes);
-      return;
-    }
-    const filteredClothes = clothes.filter(
-      (clothes) =>
-        clothes.name
-          .normalize("NFD")
-          .toLowerCase()
-          .replace(/[\u0300-\u036f]/g, "")
-          .includes(searchValue) ||
-        clothes.style
-          .normalize("NFD")
-          .toLowerCase()
-          .replace(/[\u0300-\u036f]/g, "")
-          .includes(searchValue)
-    );
+    setCartCount(getCartItems());
+  }, []);
 
-    setSearchResult(searchValue);
-    setClothes(filteredClothes);
-    setSearch("");
-  }
-
-  function handleSearch(event: ChangeEvent<HTMLInputElement>) {
-    const inputValue = event.target.value;
-    const normalizedValue = inputValue
+  useEffect(() => {
+    setFilteredClothes([]);
+    const normalizedSearchText = search
       .normalize("NFD")
       .toLowerCase()
       .replace(/[\u0300-\u036f]/g, "");
-    setSearch(normalizedValue);
-  }
 
-  function handleSubmit(event: ChangeEvent<HTMLInputElement>) {
-    event.preventDefault();
-    searchClothes(allClothes);
-  }
+    const filtered = clothes.filter((clothesItem) =>
+      clothesItem.name
+        .normalize("NFD")
+        .toLowerCase()
+        .replace(/[\u0300-\u036f]/g, "")
+        .includes(normalizedSearchText)
+    );
 
-  function showAllClothes() {
-    setClothes(allClothes);
-  }
+    setFilteredClothes(filtered);
+  }, [clothes, search]);
 
-  function addToCart(product: IProduct) {
-    if (!cart.find((productF: IProduct) => productF.name === product.name)) {
-      setCart([...cart, product]);
+  function searchClothes(searchText: string) {
+    if (searchText === "") {
+      setFilteredClothes(clothes);
+      return;
     }
+
+    const normalizedSearchText = searchText
+      .normalize("NFD")
+      .toLowerCase()
+      .replace(/[\u0300-\u036f]/g, "");
+
+    const filtered = clothes.filter((clothes) =>
+      clothes.name
+        .normalize("NFD")
+        .toLowerCase()
+        .replace(/[\u0300-\u036f]/g, "")
+        .includes(normalizedSearchText)
+    );
+
+    setFilteredClothes(filtered);
   }
 
-  function removeProduct(name: string) {
-    setCart(cart.filter((product) => product.name !== name));
+  function addToCart(product: IProductCart) {
+    if (!product.selectedSize || product.selectedSize == "") {
+      setCartCount(0);
+      return;
+    }
+    let cart: string | null = localStorage.getItem("@Amaro:Cart");
+    if (!cart) {
+      cart = "[]";
+    }
+    const cartArray = JSON.parse(cart);
+
+    const productInCart = cartArray.find(
+      (productF: IProduct) => productF.name === product.name
+    );
+
+    if (!productInCart) {
+      cartArray.push(product);
+      localStorage.setItem("@Amaro:Cart", JSON.stringify(cartArray));
+      setCartCount(cartCount + 1);
+    }
+
+    return cartArray;
   }
 
-  function removeAllCart() {
-    setCart([]);
-  }
+  // function removeProduct(name: string) {
+  //   setCart(cart.filter((product) => product.name !== name));
+  // }
+
+  // function removeAllCart() {
+  //   setCart([]);
+  // }
+
   return (
     <>
-      <Header />
+      <Header search={search} setSearch={setSearch} cartCount={cartCount} />
       <main className={styles.main_container}>
-        <h1 className={styles.title}>Roupas Femininas</h1>
-        <FiltersSection />
+        <h1 className={styles.title}>Roupas e Acessórios Femininos</h1>
+        <FiltersSection
+          clothes={clothes}
+          setFilteredClothes={setFilteredClothes}
+        />
         <section className={styles.section__products}>
           <ul className={styles.products_list}>
-            {clothes.map((product) => (
-              <Card key={product.name} clothes={product} />
-            ))}
+            {filteredClothes.length > 0
+              ? filteredClothes.map((product) => (
+                  <Card key={uuid()} clothes={product} addToCart={addToCart} />
+                ))
+              : clothes.map((product) => (
+                  <Card key={uuid()} clothes={product} addToCart={addToCart} />
+                ))}
           </ul>
         </section>
       </main>
