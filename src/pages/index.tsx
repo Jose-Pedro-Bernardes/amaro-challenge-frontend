@@ -9,7 +9,6 @@ import Card from "@/components/Card";
 import { v4 as uuid } from "uuid";
 
 const inter = Inter({ subsets: ["latin"] });
-
 export default function Home() {
   const [clothes, setClothes] = useState<IProduct[]>([]);
   const [filteredClothes, setFilteredClothes] = useState<IProduct[]>([]);
@@ -94,14 +93,6 @@ export default function Home() {
 
     return cartArray;
   }
-
-  // function removeProduct(name: string) {
-  //   setCart(cart.filter((product) => product.name !== name));
-  // }
-
-  // function removeAllCart() {
-  //   setCart([]);
-  // }
 
   return (
     <>
