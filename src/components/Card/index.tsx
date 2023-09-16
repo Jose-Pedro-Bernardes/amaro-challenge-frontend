@@ -1,17 +1,22 @@
-import { IProduct } from "@/types/products.interface";
 import styles from "./Card.module.css";
 import Image from "next/image";
 import { capitalizeWords } from "@/helpers/capitalizeWords";
+import { CheckBox } from "./CheckBox";
+import { v4 as uuid } from "uuid";
+import { useState } from "react";
+import { IPropsCard } from "./card.interface";
 
-interface IProps {
-  key: string;
-  clothes: IProduct;
-}
+export default function Card({ clothes, addToCart }: IPropsCard) {
+  const [selectedSize, setSelectedSize] = useState("");
+  const { style, code_color, color, sizes, ...productCart } = clothes;
+  const returnProductCart = { ...productCart, selectedSize };
 
-export default function Card({ key, clothes }: IProps) {
+  const handleSelectSize = (size: string) => {
+    setSelectedSize(size);
+  };
   return (
     <>
-      <li key={clothes.name} className={styles.card}>
+      <li className={styles.card}>
         {clothes.on_sale && (
           <div className={styles.percentage_box}>
             <p>-{clothes.discount_percentage}</p>
@@ -38,7 +43,25 @@ export default function Card({ key, clothes }: IProps) {
               )}
             </div>
             <p className={styles.installments}>{clothes.installments}</p>
-            <button className={styles.addToCart}>Adicionar ao Carrinho</button>
+            <div className={styles.checkboxes_align}>
+              {clothes.sizes
+                .filter((size) => size.available === true)
+                .map((size) => (
+                  <CheckBox
+                    key={uuid()}
+                    size={size.size}
+                    selectedSize={selectedSize}
+                    onSelectSize={handleSelectSize}
+                  />
+                ))}
+            </div>
+            <button
+              type="button"
+              onClick={() => addToCart(returnProductCart)}
+              className={styles.addToCart}
+            >
+              Adicionar ao Carrinho
+            </button>
           </div>
         </div>
       </li>
