@@ -78,6 +78,12 @@
   font-size: 0.75rem;
   border-radius: 6px;
 }
+
+.checkboxes_align {
+  display: flex;
+  max-width: 100%;
+}
+
 @media (min-width: 671px) {
   .card {
     width: 100%;
