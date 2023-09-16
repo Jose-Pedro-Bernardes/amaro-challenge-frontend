@@ -17,6 +17,17 @@ export interface IProduct {
   }[];
 }
 
+export interface IProductCart {
+  name: string;
+  on_sale: boolean;
+  regular_price: string;
+  actual_price: string;
+  discount_percentage: string;
+  installments: string;
+  image: string;
+  selectedSize: string;
+}
+
 export interface IProductList {
   products: IProduct[];
 }
