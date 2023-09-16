@@ -33,9 +33,6 @@
   border-bottom: 2px rgb(0, 0, 0, 0.1) solid;
   padding-bottom: 30px;
   background-color: #fff;
-  position: sticky;
-  top: 0;
-  z-index: 1;
   font-family: "Inter", sans-serif;
 }
 
@@ -127,6 +124,11 @@
 }
 
 @media (min-width: 1000px) {
+  .headerContainer {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
   .searchInput {
     width: 30rem;
   }
