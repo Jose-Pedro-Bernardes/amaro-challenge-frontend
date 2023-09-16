@@ -1,16 +1,9 @@
-import Image from "next/image";
+import { IHeaderProps } from "./header.interface";
 import styles from "./Header.module.css";
+import Image from "next/image";
 import Link from "next/link";
-import { ChangeEvent, MouseEventHandler } from "react";
-import { useState } from "react";
 
-interface HeaderProps {
-  handleSearch: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: MouseEventHandler<HTMLButtonElement>;
-  inputValue: string;
-}
-
-export function Header() {
+export function Header({ search, setSearch, cartCount }: IHeaderProps) {
   return (
     <header className={styles.headerContainer}>
       <div className={styles.header__container_align}>
@@ -31,23 +24,18 @@ export function Header() {
               width={22}
               height={30}
             />
-            <p className={styles.cart_count}>1</p>
+            <p className={styles.cart_count}>{cartCount}</p>
           </Link>
         </div>
         <form className={styles.boxInputSearch}>
           <input
-            //value={inputValue}
+            value={search}
             className={styles.searchInput}
-            //onChange={handleSearch}
-            maxLength={40}
+            onChange={(e) => setSearch(e.target.value)}
             type="text"
             placeholder="O que você está procurando?"
           />
-          <button
-            type={"button"}
-            //onClick={handleSubmit}
-            className={styles.buttonSearch}
-          >
+          <button type={"button"} className={styles.buttonSearch}>
             {" "}
             <Image
               src={"/images/lupa.svg"}
