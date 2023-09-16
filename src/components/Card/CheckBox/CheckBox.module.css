@@ -10,8 +10,8 @@
 }
 
 .checkbox_label {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   border: 1px solid #6e6e6e8e;
   color: #6e6e6e;
   border-radius: 4px;
@@ -20,7 +20,7 @@
   justify-content: center;
   margin-right: 10px;
   transition: background-color 0.3s, color 0.3s;
-  font-size: 0.75rem;
+  font-size: 0.6rem;
   max-width: 100%;
   user-select: none;
 }
@@ -28,6 +28,14 @@
 .custom_checkbox input[type="checkbox"]:checked + .checkbox_label {
   background-color: #000;
   color: #fff;
+}
+
+@media (min-width: 389px) {
+  .checkbox_label {
+    width: 20px;
+    height: 20px;
+    font-size: 0.75rem;
+  }
 }
 
 @media (min-width: 1000px) {

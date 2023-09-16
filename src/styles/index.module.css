@@ -10,7 +10,7 @@
 }
 
 .title {
-  font-size: 1.375rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #000000;
 }
@@ -23,9 +23,15 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  gap: 5px;
   grid-row-gap: 20px;
   justify-content: center;
+}
+
+@media (min-width: 389px) {
+  .products_list {
+    gap: 10px;
+  }
 }
 
 @media (min-width: 671px) {
