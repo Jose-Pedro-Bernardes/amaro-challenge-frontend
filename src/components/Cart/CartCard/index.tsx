@@ -5,13 +5,19 @@ import { IProductCart } from "@/types/products.interface";
 
 interface IProps {
   product: IProductCart;
+  removeFromCart: (name: string) => void;
 }
 
-export default function CartCard({ product }: IProps) {
+export default function CartCard({ product, removeFromCart }: IProps) {
   return (
     <>
       <li className={styles.card}>
-        <button className={styles.remove_from_cart}>x</button>
+        <button
+          onClick={() => removeFromCart(product.name)}
+          className={styles.remove_from_cart}
+        >
+          x
+        </button>
         <Image
           src={product.image}
           alt="Imagem do produto."
