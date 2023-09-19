@@ -48,28 +48,6 @@ export default function Home() {
     setFilteredClothes(filtered);
   }, [clothes, search]);
 
-  function searchClothes(searchText: string) {
-    if (searchText === "") {
-      setFilteredClothes(clothes);
-      return;
-    }
-
-    const normalizedSearchText = searchText
-      .normalize("NFD")
-      .toLowerCase()
-      .replace(/[\u0300-\u036f]/g, "");
-
-    const filtered = clothes.filter((clothes) =>
-      clothes.name
-        .normalize("NFD")
-        .toLowerCase()
-        .replace(/[\u0300-\u036f]/g, "")
-        .includes(normalizedSearchText)
-    );
-
-    setFilteredClothes(filtered);
-  }
-
   function addToCart(product: IProductCart) {
     if (!product.selectedSize || product.selectedSize == "") {
       setCartCount(0);
