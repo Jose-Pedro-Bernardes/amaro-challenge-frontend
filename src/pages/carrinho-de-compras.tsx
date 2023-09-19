@@ -20,9 +20,12 @@ export default function CartPage() {
     setCart(getCartItems());
   }, []);
 
-  // function removeProduct(name: string) {
-  //   setCart(cart.filter((product) => product.name !== name));
-  // }
+  function removeFromCart(name: string) {
+    const updatedCart = cart.filter((product) => product.name !== name);
+    setCart(updatedCart);
+
+    localStorage.setItem("@Amaro:Cart", JSON.stringify(updatedCart));
+  }
 
   // function removeAllCart() {
   //   setCart([]);
@@ -44,7 +47,11 @@ export default function CartPage() {
                 <p>Nada no carrinho</p>
               ) : (
                 cart.map((product) => (
-                  <CartCard key={uuid()} product={product} />
+                  <CartCard
+                    key={uuid()}
+                    product={product}
+                    removeFromCart={removeFromCart}
+                  />
                 ))
               )}
             </ul>
