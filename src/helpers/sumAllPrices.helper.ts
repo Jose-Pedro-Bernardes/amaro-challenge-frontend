@@ -1,5 +1,5 @@
 import { IProductCart } from "@/types/products.interface";
-import removeCurrencyFormatting from "./removeCurrencyFormatting";
+import removeCurrencyFormatting from "./removeCurrencyFormatting.helper";
 
 export default function totalValue(cart: IProductCart[]): number {
   const sum = cart.reduce((prevValue: number, currentValue: IProductCart) => {
