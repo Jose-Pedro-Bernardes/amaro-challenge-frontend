@@ -27,10 +27,16 @@ export default function CartCard({ product }: IProps) {
               <p className={styles.product_count}>1</p>
               <button className={styles.button_less}>-</button>
             </div>
-            <div className={styles.price_box}>
-              <p className={styles.regular_price}>{product.regular_price}</p>
-              <p className={styles.actual_price}>{product.actual_price}</p>
-            </div>
+            {product.on_sale ? (
+              <div className={styles.price_box}>
+                <p className={styles.regular_price}>{product.regular_price}</p>
+                <p className={styles.actual_price}>{product.actual_price}</p>
+              </div>
+            ) : (
+              <div className={styles.price_box_end}>
+                <p className={styles.actual_price}>{product.actual_price}</p>
+              </div>
+            )}
           </div>
         </div>
       </li>
