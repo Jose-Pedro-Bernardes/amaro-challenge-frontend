@@ -1,9 +1,21 @@
-import "@/styles/global/globals.css";
 import "@/styles/global/reset.css";
-import type { AppProps } from "next/app";
+import "@/styles/global/globals.css";
+import { AppProps } from "next/app";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import Head from "next/head";
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router.pathname === "/carrinho-de-compras") {
+      document.body.classList.add("cart-page");
+    } else {
+      document.body.classList.remove("cart-page");
+    }
+  }, [router.pathname]);
+
   return (
     <>
       <Head>
@@ -14,3 +26,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </>
   );
 }
+
+export default App;
