@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./CartCard.module.css";
 import Image from "next/image";
 import { IProductCart } from "@/types/products.interface";
+import { capitalizeWords } from "@/helpers/capitalizeWords";
 
 interface IProps {
   product: IProductCart;
@@ -25,7 +26,9 @@ export default function CartCard({ product, removeFromCart }: IProps) {
           height={100}
         />
         <div className={styles.card_box_align}>
-          <h3 className={styles.product_name}>{product.name}</h3>
+          <h3 className={styles.product_name}>
+            {capitalizeWords(product.name)}
+          </h3>
           <p className={styles.product_size}>Tamanho: {product.selectedSize}</p>
           <div className={styles.card_box_end_align}>
             <div className={styles.product_count_box}>
