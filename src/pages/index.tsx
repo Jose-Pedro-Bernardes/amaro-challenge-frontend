@@ -50,7 +50,6 @@ export default function Home() {
 
   function addToCart(product: IProductCart) {
     if (!product.selectedSize || product.selectedSize == "") {
-      setCartCount(0);
       return;
     }
     let cart: string | null = localStorage.getItem("@Amaro:Cart");
