@@ -8,8 +8,9 @@ import { IPropsCard } from "./card.interface";
 
 export default function Card({ clothes, addToCart }: IPropsCard) {
   const [selectedSize, setSelectedSize] = useState("");
-  const { style, code_color, color, sizes, ...productCart } = clothes;
-  const returnProductCart = { ...productCart, selectedSize };
+  const count = 1;
+  const { style, code_color, sizes, ...productCart } = clothes;
+  const returnProductCart = { ...productCart, selectedSize, count };
 
   const handleSelectSize = (size: string) => {
     setSelectedSize(size);
