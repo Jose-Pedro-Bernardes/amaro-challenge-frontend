@@ -19,6 +19,7 @@ export interface IProduct {
 
 export interface IProductCart {
   name: string;
+  color: string;
   on_sale: boolean;
   regular_price: string;
   actual_price: string;
@@ -26,6 +27,7 @@ export interface IProductCart {
   installments: string;
   image: string;
   selectedSize: string;
+  count: number;
 }
 
 export interface IProductList {

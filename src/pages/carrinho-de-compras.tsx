@@ -34,6 +34,33 @@ export default function CartPage() {
     localStorage.removeItem("@Amaro:Cart");
   }
 
+  function updateProductCount(product: IProductCart, newCount: number): void {
+    const updatedCart = cart.map((item) =>
+      item.name === product.name &&
+      item.selectedSize === product.selectedSize &&
+      item.color === product.color
+        ? { ...item, count: newCount }
+        : item
+    );
+
+    setCart(updatedCart);
+    localStorage.setItem("@Amaro:Cart", JSON.stringify(updatedCart));
+  }
+
+  const handleIncrement = (product: IProductCart) => {
+    if (product.count < 5) {
+      const newCount = product.count + 1;
+      updateProductCount(product, newCount);
+    }
+  };
+
+  const handleDecrement = (product: IProductCart) => {
+    if (product.count > 1) {
+      const newCount = product.count - 1;
+      updateProductCount(product, newCount);
+    }
+  };
+
   return (
     <>
       <CartHeader />
@@ -46,7 +73,6 @@ export default function CartPage() {
                 Continue comprando
               </Link>
             </section>
-            <div className={styles.white_box_top}></div>
             <section className={styles.cart_wrapper}>
               <ul className={styles.cart}>
                 {cart.length === 0 ? (
@@ -67,12 +93,13 @@ export default function CartPage() {
                       key={uuid()}
                       product={product}
                       removeFromCart={removeFromCart}
+                      handleIncrement={handleIncrement}
+                      handleDecrement={handleDecrement}
                     />
                   ))
                 )}
               </ul>
             </section>
-            <div className={styles.white_box_bottom}></div>
           </div>
           {!(cart.length === 0) && (
             <section className={styles.purchase_summary}>
