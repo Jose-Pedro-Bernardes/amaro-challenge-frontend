@@ -7,9 +7,16 @@ import { capitalizeWords } from "@/helpers/capitalizeWords";
 interface IProps {
   product: IProductCart;
   removeFromCart: (name: string) => void;
+  handleIncrement: (product: IProductCart) => void;
+  handleDecrement: (product: IProductCart) => void;
 }
 
-export default function CartCard({ product, removeFromCart }: IProps) {
+export default function CartCard({
+  product,
+  removeFromCart,
+  handleIncrement,
+  handleDecrement,
+}: IProps) {
   return (
     <>
       <li className={styles.card}>
@@ -32,9 +39,19 @@ export default function CartCard({ product, removeFromCart }: IProps) {
           <p className={styles.product_size}>Tamanho: {product.selectedSize}</p>
           <div className={styles.card_box_end_align}>
             <div className={styles.product_count_box}>
-              <button className={styles.button_plus}>+</button>
-              <p className={styles.product_count}>1</p>
-              <button className={styles.button_less}>-</button>
+              <button
+                onClick={() => handleIncrement(product)}
+                className={styles.button_plus}
+              >
+                +
+              </button>
+              <p className={styles.product_count}>{product.count}</p>
+              <button
+                onClick={() => handleDecrement(product)}
+                className={styles.button_less}
+              >
+                -
+              </button>
             </div>
             {product.on_sale ? (
               <div className={styles.price_box}>
