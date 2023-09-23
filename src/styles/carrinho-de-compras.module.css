@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Inter", sans-serif;
+  font-family: "Roboto" sans-serif;
   padding-top: 30px;
   margin-bottom: 50px;
 }
@@ -263,6 +263,10 @@
 
   .button_buy {
     font-size: 16px;
+  }
+  .button_buy:hover {
+    background-color: #000;
+    color: #fff;
   }
 }
 

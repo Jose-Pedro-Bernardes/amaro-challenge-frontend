@@ -1,5 +1,5 @@
 import { Header } from "@/components/Header";
-import { Inter } from "next/font/google";
+import { Inter, Roboto } from "next/font/google";
 import styles from "../styles/index.module.css";
 import { useEffect, useState } from "react";
 import { FiltersSection } from "@/components/FiltersSection";
@@ -9,6 +9,8 @@ import Card from "@/components/Card";
 import { v4 as uuid } from "uuid";
 
 const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({ subsets: ["latin"], weight: "400" });
+
 export default function Home() {
   const [clothes, setClothes] = useState<IProduct[]>([]);
   const [filteredClothes, setFilteredClothes] = useState<IProduct[]>([]);
