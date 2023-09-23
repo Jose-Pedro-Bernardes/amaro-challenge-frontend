@@ -9,14 +9,14 @@ export default function sumAllPrices(
   if (regular) {
     const sum = cart.reduce((prevValue: number, currentValue: IProductCart) => {
       const priceNumber = removeCurrencyFormatting(currentValue.regular_price);
-      return prevValue + priceNumber;
+      return (prevValue + priceNumber) * currentValue.count;
     }, 0);
 
     return formatPrice(sum);
   }
   const sum = cart.reduce((prevValue: number, currentValue: IProductCart) => {
     const priceNumber = removeCurrencyFormatting(currentValue.actual_price);
-    return prevValue + priceNumber;
+    return (prevValue + priceNumber) * currentValue.count;
   }, 0);
 
   return formatPrice(sum);
