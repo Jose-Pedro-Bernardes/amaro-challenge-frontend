@@ -49,26 +49,37 @@ export default function Home() {
   }, [clothes, search]);
 
   function addToCart(product: IProductCart) {
-    if (!product.selectedSize || product.selectedSize == "") {
+    if (!product.selectedSize || product.selectedSize === "") {
       return;
     }
+
     let cart: string | null = localStorage.getItem("@Amaro:Cart");
     if (!cart) {
       cart = "[]";
     }
-    const cartArray = JSON.parse(cart);
-
-    const productInCart = cartArray.find(
-      (productF: IProduct) => productF.name === product.name
-    );
-
-    if (!productInCart) {
-      cartArray.push(product);
-      localStorage.setItem("@Amaro:Cart", JSON.stringify(cartArray));
-      setCartCount(cartCount + 1);
+    const cartArray: IProductCart[] = JSON.parse(cart);
+    if (cartArray.length > 15) {
+      // Você pode mostrar uma mensagem de erro ou tomar outra ação aqui
+      console.log("O carrinho já atingiu o limite de 15 produtos.");
+      return;
     }
 
-    return cartArray;
+    const productIndex = cartArray.findIndex(
+      (p) =>
+        p.name === product.name &&
+        p.selectedSize === product.selectedSize &&
+        p.color === product.color
+    );
+
+    if (productIndex !== -1) {
+      cartArray[productIndex].count += 1;
+    } else {
+      product.count = 1;
+      cartArray.push(product);
+    }
+
+    localStorage.setItem("@Amaro:Cart", JSON.stringify(cartArray));
+    setCartCount(cartCount + 1);
   }
 
   return (
