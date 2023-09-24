@@ -8,6 +8,7 @@ import { v4 as uuid } from "uuid";
 import { IProductCart } from "@/types/products.interface";
 import sumAllPrices from "@/helpers/sumAllPrices.helper";
 import Image from "next/image";
+import { finalizeAlert } from "@/helpers/callTheAlert";
 
 export default function CartPage() {
   const [cart, setCart] = useState<IProductCart[]>([]);
@@ -22,16 +23,26 @@ export default function CartPage() {
     setCart(getCartItems());
   }, []);
 
-  function removeFromCart(name: string) {
-    const updatedCart = cart.filter((product) => product.name !== name);
+  function removeFromCart(productToRemove: IProductCart) {
+    const updatedCart = cart.filter((product) => {
+      return (
+        product.name !== productToRemove.name ||
+        product.selectedSize !== productToRemove.selectedSize ||
+        product.color !== productToRemove.color
+      );
+    });
+
     setCart(updatedCart);
 
     localStorage.setItem("@Amaro:Cart", JSON.stringify(updatedCart));
   }
 
   function finalizePurchase() {
-    setCart([]);
-    localStorage.removeItem("@Amaro:Cart");
+    finalizeAlert();
+    setTimeout(() => {
+      setCart([]);
+      localStorage.removeItem("@Amaro:Cart");
+    }, 2000); // 2
   }
 
   function updateProductCount(product: IProductCart, newCount: number): void {
@@ -123,7 +134,7 @@ export default function CartPage() {
                   onClick={finalizePurchase}
                   className={styles.button_buy}
                 >
-                  Finalizar compra
+                  Finalizar pedido
                 </button>
               </div>
             </section>
