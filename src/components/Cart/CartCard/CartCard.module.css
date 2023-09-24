@@ -122,6 +122,8 @@
 @media (min-width: 1070px) {
   .remove_from_cart {
     top: 8px;
+    width: 45px;
+    height: 45px;
   }
   .product_name {
     font-size: 18px;
@@ -137,7 +139,7 @@
   }
 
   .actual_price {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .button_plus,
