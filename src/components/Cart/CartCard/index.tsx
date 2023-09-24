@@ -6,7 +6,7 @@ import { capitalizeWords } from "@/helpers/capitalizeWords";
 
 interface IProps {
   product: IProductCart;
-  removeFromCart: (name: string) => void;
+  removeFromCart: (product: IProductCart) => void;
   handleIncrement: (product: IProductCart) => void;
   handleDecrement: (product: IProductCart) => void;
 }
@@ -21,7 +21,7 @@ export default function CartCard({
     <>
       <li className={styles.card}>
         <button
-          onClick={() => removeFromCart(product.name)}
+          onClick={() => removeFromCart(product)}
           className={styles.remove_from_cart}
         >
           x
