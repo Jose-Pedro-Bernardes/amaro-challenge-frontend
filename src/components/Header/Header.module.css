@@ -8,6 +8,13 @@
   padding-left: 30px;
   padding-right: 40px;
   font-size: 0.813rem;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+}
+
+.searchInput:focus {
+  outline: 2px solid #969696;
 }
 
 .imageAlign {
@@ -24,6 +31,9 @@
   position: absolute;
   right: 15px;
   top: 11px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 .headerContainer {
   display: flex;

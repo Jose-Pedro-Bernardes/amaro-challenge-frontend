@@ -25,6 +25,7 @@
   font-size: 0.75rem;
   border: 1px solid #cccccc;
   border-radius: 40px;
+  cursor: pointer;
 }
 
 @media (min-width: 800px) {

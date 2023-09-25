@@ -79,6 +79,8 @@
   font-weight: 600;
   font-size: 0.6rem;
   border-radius: 6px;
+  border: none;
+  cursor: pointer;
 }
 
 .checkboxes_align {
