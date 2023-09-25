@@ -9,6 +9,7 @@ import { IProductCart } from "@/types/products.interface";
 import sumAllPrices from "@/helpers/sumAllPrices.helper";
 import Image from "next/image";
 import { finalizeAlert } from "@/helpers/callTheAlert";
+import Button from "@/components/Button";
 
 export default function CartPage() {
   const [cart, setCart] = useState<IProductCart[]>([]);
@@ -130,12 +131,11 @@ export default function CartPage() {
                     {sumAllPrices(cart, false)}
                   </p>
                 </div>
-                <button
+                <Button
                   onClick={finalizePurchase}
                   className={styles.button_buy}
-                >
-                  Finalizar pedido
-                </button>
+                  text="Finalizar pedido"
+                />
               </div>
             </section>
           )}

@@ -5,6 +5,7 @@ import { CheckBox } from "./CheckBox";
 import { v4 as uuid } from "uuid";
 import { useState } from "react";
 import { IPropsCard } from "./card.interface";
+import Button from "../Button";
 
 export default function Card({ clothes, addToCart }: IPropsCard) {
   const [selectedSize, setSelectedSize] = useState("");
@@ -56,13 +57,11 @@ export default function Card({ clothes, addToCart }: IPropsCard) {
                   />
                 ))}
             </div>
-            <button
-              type="button"
+            <Button
               onClick={() => addToCart(returnProductCart)}
               className={styles.addToCart}
-            >
-              Adicionar ao Carrinho
-            </button>
+              text="Adicionar ao Carrinho"
+            />
           </div>
         </div>
       </li>

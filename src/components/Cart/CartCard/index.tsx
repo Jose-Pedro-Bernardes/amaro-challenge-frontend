@@ -3,6 +3,7 @@ import styles from "./CartCard.module.css";
 import Image from "next/image";
 import { IProductCart } from "@/types/products.interface";
 import { capitalizeWords } from "@/helpers/capitalizeWords";
+import Button from "@/components/Button";
 
 interface IProps {
   product: IProductCart;
@@ -20,12 +21,12 @@ export default function CartCard({
   return (
     <>
       <li className={styles.card}>
-        <button
+        <Button
           onClick={() => removeFromCart(product)}
           className={styles.remove_from_cart}
-        >
-          x
-        </button>
+          text="x"
+        />
+
         <Image
           src={product.image}
           alt="Imagem do produto."
@@ -39,19 +40,18 @@ export default function CartCard({
           <p className={styles.product_size}>Tamanho: {product.selectedSize}</p>
           <div className={styles.card_box_end_align}>
             <div className={styles.product_count_box}>
-              <button
+              <Button
                 onClick={() => handleIncrement(product)}
                 className={styles.button_plus}
-              >
-                +
-              </button>
+                text="+"
+              />
+
               <p className={styles.product_count}>{product.count}</p>
-              <button
+              <Button
                 onClick={() => handleDecrement(product)}
                 className={styles.button_less}
-              >
-                -
-              </button>
+                text="-"
+              />
             </div>
             {product.on_sale ? (
               <div className={styles.price_box}>

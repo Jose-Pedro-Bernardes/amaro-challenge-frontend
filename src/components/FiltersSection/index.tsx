@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./FiltersSection.module.css";
 import { IProduct } from "@/types/products.interface";
 import { IPropsFilters } from "./filterSection.interface";
+import Button from "../Button";
 
 export function FiltersSection({ clothes, setFilteredClothes }: IPropsFilters) {
   function filteredSaleProduct(clothes: IProduct[]) {
@@ -16,20 +17,18 @@ export function FiltersSection({ clothes, setFilteredClothes }: IPropsFilters) {
       <section className={styles.filter_container}>
         <ul className={styles.filterBox}>
           <li>
-            <button
+            <Button
               onClick={() => filteredSaleProduct([])}
               className={styles.filter}
-            >
-              Todos
-            </button>
+              text="Todos"
+            />
           </li>
           <li>
-            <button
+            <Button
               onClick={() => filteredSaleProduct(clothes)}
               className={styles.filter}
-            >
-              Em Promoção
-            </button>
+              text="Em Promoção"
+            />
           </li>
         </ul>
       </section>
