@@ -6,7 +6,7 @@ import { products } from "../data/products.json";
 import { IProduct, IProductCart } from "@/types/products.interface";
 import Card from "@/components/Card";
 import { v4 as uuid } from "uuid";
-import { callTheToast } from "@/helpers/callTheToast";
+import { callTheErrorToast, callTheToast } from "@/helpers/callTheToast";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { limitReached } from "@/helpers/callTheAlert";
@@ -52,6 +52,7 @@ export default function Home() {
 
   function addToCart(product: IProductCart) {
     if (!product.selectedSize || product.selectedSize === "") {
+      callTheErrorToast();
       return;
     }
 
@@ -117,6 +118,7 @@ export default function Home() {
       <ToastContainer
         position="top-right"
         autoClose={2000}
+        limit={5}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
