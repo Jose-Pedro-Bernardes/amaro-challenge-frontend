@@ -4,9 +4,13 @@ import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Head from "next/head";
-import { Inter, Roboto } from "next/font/google";
-const inter = Inter({ subsets: ["latin"] });
-const roboto = Roboto({ subsets: ["latin"], weight: "400" });
+import { Roboto } from "next/font/google";
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "500", "700", "900"],
+  variable: "--main-font",
+});
+
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
@@ -24,9 +28,9 @@ function App({ Component, pageProps }: AppProps) {
         <title>Amaro</title>
         <link rel="shortcut icon" href="amaro.png" type="image/x-icon" />
       </Head>
-      <div style={{ fontFamily: `${inter}, ${roboto}, sans-serif` }}>
+      <main className={roboto.className}>
         <Component {...pageProps} />
-      </div>
+      </main>
     </>
   );
 }
