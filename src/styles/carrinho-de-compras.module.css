@@ -60,6 +60,7 @@
   padding: 10px 10px;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+  box-sizing: border-box;
 }
 
 .cart {
@@ -96,6 +97,7 @@
   background-color: #fff;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
+  box-sizing: border-box;
 }
 
 .pucharse_resume_box {
