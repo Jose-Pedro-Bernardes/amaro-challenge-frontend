@@ -19,9 +19,10 @@
 
 .back_to_home {
   border-radius: 6px;
-  border: 1px solid #b4b4b4;
+  border: 1px solid #000000;
   padding: 8px;
-  color: black;
+  background-color: #000000;
+  color: #fff;
 }
 
 .main__align_itens {
@@ -150,7 +151,7 @@
   align-items: center;
   width: 100%;
   height: 40px;
-  background-color: #1d1d1d;
+  background-color: #000000;
   padding: 10px;
   border-radius: 6px;
   color: #ebebeb;
@@ -175,11 +176,21 @@
 
 @media (min-width: 900px) {
   .back_to_home {
+    border: 1px solid #b4b4b4;
+    color: black;
     transition: all 0.2s ease;
     font-weight: 500;
   }
   .back_to_home:hover {
     background-color: #000000;
+    color: #fff;
+  }
+
+  .button_buy {
+    background-color: #1d1d1d;
+  }
+  .button_buy:hover {
+    background-color: #000;
     color: #fff;
   }
 }
@@ -267,10 +278,6 @@
 
   .button_buy {
     font-size: 16px;
-  }
-  .button_buy:hover {
-    background-color: #000;
-    color: #fff;
   }
 }
 
