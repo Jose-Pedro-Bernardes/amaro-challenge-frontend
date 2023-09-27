@@ -11,7 +11,7 @@
 }
 
 .title {
-  font-size: 1rem;
+  font-size: var(--font-size-h1);
   font-weight: 600;
   color: #000000;
 }
@@ -36,7 +36,7 @@
 
 @media (min-width: 671px) {
   .title {
-    font-size: 1.5rem;
+    font-size: var(--font-size-h1);
   }
   .products_list {
     grid-template-columns: repeat(3, 1fr);

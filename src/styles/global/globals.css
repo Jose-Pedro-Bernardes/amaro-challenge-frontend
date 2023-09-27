@@ -5,9 +5,50 @@
 :root {
   --brand-1: #fff;
   --brand-2: #000;
-  --gray-0: #000;
-  --font-size-h1: 1.125rem;
-  --font-size-h2: 1rem;
-  --font-size-h3: 0.875rem;
-  --font-size-text: 0.75rem;
+
+  --secundary-black-color: #000000b2;
+  --border-main-color: #b4b4b4;
+
+  --search-input-background-color: #f0f0f0;
+  --cart-count-background-color: rgb(255, 112, 112);
+
+  --gray-00: #000;
+  --gray-10: #101010;
+  --gray-20: #1f1f1f;
+  --gray-30: #303030;
+  --gray-40: #353432;
+  --gray-50: #757575;
+  --gray-60: #969696;
+
+  --light-00: #f6f6f6;
+  --light-10: #f1f2f2;
+  --light-20: #dde2e5;
+  --light-30: #b7b7b7;
+
+  --font-size-h1: 1rem;
+  --font-size-h2: 0.875rem;
+  --font-size-h3: 0.75rem;
+  --font-size-text: 0.6rem;
+
+  --font-family-secudary: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@media (min-width: 389px) {
+  :root {
+    --font-size-text: 0.75rem;
+  }
+}
+
+@media (min-width: 671px) {
+  :root {
+    --font-size-h1: 1.5rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  :root {
+    --font-size-h2: 1rem;
+    --font-size-h3: 0.875rem;
+    --font-size-text: 0.875rem;
+  }
 }

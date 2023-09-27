@@ -1,8 +1,8 @@
 .custom_checkbox {
+  max-width: 100%;
   display: flex;
   align-items: center;
   cursor: pointer;
-  max-width: 100%;
 }
 
 .custom_checkbox input[type="checkbox"] {
@@ -10,18 +10,18 @@
 }
 
 .checkbox_label {
+  max-width: 100%;
   width: 16px;
   height: 16px;
-  border: 1px solid #6e6e6e8e;
-  color: #6e6e6e;
+  border: 1px solid var(--border-main-color);
   border-radius: 4px;
+  margin-right: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 10px;
+  font-size: var(--font-size-text);
+  color: #6e6e6e;
   transition: background-color 0.3s, color 0.3s;
-  font-size: 0.6rem;
-  max-width: 100%;
   user-select: none;
 }
 
@@ -34,7 +34,6 @@
   .checkbox_label {
     width: 20px;
     height: 20px;
-    font-size: 0.75rem;
   }
 }
 
@@ -42,7 +41,6 @@
   .checkbox_label {
     width: 25px;
     height: 25px;
-    font-size: 0.875rem;
   }
   .custom_checkbox:hover .checkbox_label {
     border: 1px solid #000;
