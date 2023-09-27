@@ -177,6 +177,7 @@
 @media (min-width: 900px) {
   .back_to_home {
     border: 1px solid #b4b4b4;
+    background-color: transparent;
     color: black;
     transition: all 0.2s ease;
     font-weight: 500;
